@@ -9,4 +9,4 @@ async function getEvents(userName) {
 export { getEvents }
 
 
-// fazer o fetch corretamente dos eventos filtrando apenas os eventos de tipo: CreateEvent e PushEvent
+// fazer o fetch corretamente dos eventos filtrando apenas os eventos de tipo: CreateEvent e PushEvent 
