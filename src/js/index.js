@@ -1,9 +1,11 @@
 import { getRepositories } from "./services/repositories.js"
 import { getUser } from "./services/user.js"
+import { getEvents } from "./services/events.js"
 
 import { user } from "./objects/user.js"
 
 import { screen } from "./objects/screen.js"
+
 
 document.getElementById('btn-search').addEventListener('click', () => {
     const userName = document.getElementById('input-search').value
@@ -35,6 +37,7 @@ async function getUserData(userName) {
 
 
     const userResponse = await getUser(userName)
+    const eventsResponse = await getEvents(userName)
     const repositoriesResponse = await getRepositories(userName)
 
     user.setInfo(userResponse)
@@ -44,9 +47,11 @@ async function getUserData(userName) {
         screen.renderNotFound() 
         return
     }
+
+    user.setEvents(eventsResponse) // atribuir o conteúdo (get) ao setter dos eventos
     user.setRepositories(repositoriesResponse)
 
-    console.log(user)
+    console.log(await getEvents('Eduardo071'))
 
     screen.renderUser(user)
 
