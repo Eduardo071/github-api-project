@@ -15,7 +15,7 @@ const user = {
         this.followers = gitHubUser.followers
         this.following = gitHubUser.following
 
-        console.log(gitHubUser)
+        console.log(gitHubUser) 
     },
 
     setEvents(events){

@@ -6,4 +6,4 @@ async function getUser(userName) {
 
 }
 
-export { getUser }
+export { getUser } 

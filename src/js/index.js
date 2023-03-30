@@ -48,8 +48,6 @@ async function getUserData(userName) {
         return
     }
 
-    console.log(await getEvents(userName))
-
     user.setEvents(eventsResponse)
     user.setRepositories(repositoriesResponse)
 

@@ -15,18 +15,14 @@ const screen = {
 
                          let eventsItens = ''
                          user.events.forEach(events => {
-                            eventsItens += `<li> ${events.repo.name}-${events.payload.commits}</li>`
+                            eventsItens += `<li> ${events.repo.name} - ${events.payload.description}</li><br>`
                         })
-                        
-                         if(eventsItens.type === 'CreateEvent' || 'PushEvent'){
-                            this.userProfile.innerHTML += `<div class="repositories section">
+
+                         this.userProfile.innerHTML += `<div class="repositories section">
                             <h2>Eventos</h2>
                             <ul>${eventsItens}</ul>
                        </div>`
-                         }else{
-                            console.log('cheguei aqui')
-                            return
-                         }
+                         
                         
                          let repositoriesItens = ''
                          user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`)
