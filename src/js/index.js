@@ -48,10 +48,10 @@ async function getUserData(userName) {
         return
     }
 
-    user.setEvents(eventsResponse) // atribuir o conteúdo (get) ao setter dos eventos
-    user.setRepositories(repositoriesResponse)
+    console.log(await getEvents(userName))
 
-    console.log(await getEvents('Eduardo071'))
+    user.setEvents(eventsResponse)
+    user.setRepositories(repositoriesResponse)
 
     screen.renderUser(user)
 
