@@ -1,6 +1,6 @@
 const screen = {
     userProfile: document.querySelector('.profile-data'),
-    renderUser(user){
+    renderUser(user) {
         this.userProfile.innerHTML = `<div class="info">
                          <img src="${user.avatarUrl}" alt="Foto de perfil do usuário" />
                          <div class="data">
@@ -13,29 +13,38 @@ const screen = {
                          </div>
                          </div>`
 
-                         let eventsItens = ''
-                         user.events.forEach(events => {
-                            eventsItens += `<li> ${events.repo.name} - ${events.payload.description}</li><br>`
-                        })
+        let eventsItens = ''
+        user.events.forEach(events => {
+            
+            if (events.type === 'CreateEvent' ||  events.type === 'PushEvent') {
+                console.log(events)
 
-                         this.userProfile.innerHTML += `<div class="repositories section">
+                if(events.payload.commits) {
+                    eventsItens += `<br> <li> <span> ${events.repo.name} </span> - ${events.payload.commits[0].message}</li><br>`
+                }else eventsItens += `<br> <li> <span> ${events.repo.name} </span> - ${events.payload.ref_type}</li><br>`
+
+            }
+        })
+        
+
+        this.userProfile.innerHTML += `<div class="events section">
                             <h2>Eventos</h2>
                             <ul>${eventsItens}</ul>
                        </div>`
-                         
-                        
-                         let repositoriesItens = ''
-                         user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`)
-                        
-                         if(user.repositories.length > 0){
-                            this.userProfile.innerHTML += `<div class="repositories section">
+
+
+        let repositoriesItens = ''
+        user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`)
+
+        if (user.repositories.length > 0) {
+            this.userProfile.innerHTML += `<div class="repositories section">
                                                                 <h2>Repositórios</h2>
                                                                 <ul>${repositoriesItens}</ul>
                                                            </div>`
-                         }
+        }
     },
 
-    renderNotFound(){
+    renderNotFound() {
         this.userProfile.innerHTML = `<h3>O usuário não foi encontrado</h3>`
     }
 }
