@@ -15,17 +15,16 @@ const screen = {
 
         let eventsItens = ''
         user.events.forEach(events => {
-            
-            if (events.type === 'CreateEvent' ||  events.type === 'PushEvent') {
-                console.log(events)
 
-                if(events.payload.commits) {
+            if (events.type === 'CreateEvent' || events.type === 'PushEvent') {
+
+                if (events.payload.commits) {
                     eventsItens += `<br> <li> <span> ${events.repo.name} </span> - ${events.payload.commits[0].message}</li><br>`
-                }else eventsItens += `<br> <li> <span> ${events.repo.name} </span> - ${events.payload.ref_type}</li><br>`
+                } else eventsItens += `<br> <li> <span> ${events.repo.name} </span> - ${events.payload.ref_type}</li><br>`
 
             }
         })
-        
+
 
         this.userProfile.innerHTML += `<div class="events section">
                             <h2>Eventos</h2>
@@ -34,7 +33,13 @@ const screen = {
 
 
         let repositoriesItens = ''
-        user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`)
+        user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name} <div class="informations-repos">                                                        
+        <div class="forks">🍴 ${repo.forks_count}</div>
+        <div class="stars">⭐ ${repo.stargazers_count}</div>
+        <div class="watchers">👀 ${repo.watchers_count}</div>
+        <div class="language">🧑🏻‍💻 ${repo.language}</div>
+        </div></a>
+                                                                     </li>`)
 
         if (user.repositories.length > 0) {
             this.userProfile.innerHTML += `<div class="repositories section">

@@ -144,6 +144,8 @@ main {
   border-radius: 10px;
 }
 
+/* EVENTS */
+
 .container .profile-data .events {
   display: flex;
   flex-direction: column;
@@ -188,6 +190,27 @@ main {
 .container .profile-data .repositories ul li a:hover {
   background-color: hotpink;
   color: #fff
+}
+
+.container .profile-data .repositories .informations-repos {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.container .profile-data .repositories .informations-repos div {
+  background-color: #ab29da;
+  border-radius: 0.6rem;
+  width: 3.5rem;
+  height: 1.8rem;
+  display: flex;
+  margin-right: 0.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .profile-data .repositories .informations-repos div:last-child{
+  font-size: 0.8rem;
+  width: 5.5rem;
 }
 
 .container .profile-data.hide {
